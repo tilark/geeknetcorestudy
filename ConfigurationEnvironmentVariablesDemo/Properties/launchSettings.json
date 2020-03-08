@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "ConfigurationEnvironmentVariablesDemo": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "XIAO_KEY1": "xiao_key1",
+        "SECTION1__KEY3": "value3",
+        "SECTION1__SECTION2__KEY4": "value4",
+        "KEY1": "value",
+        "KEY2": "value2"
+      }
+    }
+  }
+}
