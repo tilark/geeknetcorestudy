@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
@@ -28,6 +29,22 @@ namespace OptionsDemo.Services
 
     public class OrderServiceOptions
     {
+        [Range(1, 20)]
         public int MaxOrderCount { get; set; } = 100;
+    }
+
+    public class OrderServiceValidateOptions: IValidateOptions<OrderServiceOptions>
+    {
+        public ValidateOptionsResult Validate(string name, OrderServiceOptions options)
+        {
+            if (options.MaxOrderCount > 100)
+            {
+                return ValidateOptionsResult.Fail("不能大于100");
+            }
+            else
+            {
+                return ValidateOptionsResult.Success;
+            }
+        }
     }
 }
