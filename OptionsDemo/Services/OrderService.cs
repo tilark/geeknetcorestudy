@@ -29,7 +29,7 @@ namespace OptionsDemo.Services
 
     public class OrderServiceOptions
     {
-        [Range(1, 20)]
+        [Range(1, 200)]
         public int MaxOrderCount { get; set; } = 100;
     }
 

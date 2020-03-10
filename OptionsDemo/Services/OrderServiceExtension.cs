@@ -12,14 +12,10 @@ namespace OptionsDemo.Services
     {
         public static IServiceCollection AddOrderService(this IServiceCollection services, IConfiguration configuration)
         {
-            //services.Configure<OrderServiceOptions>(configuration);
             services.AddOptions<OrderServiceOptions>().Configure(options =>
            {
                configuration.Bind(options);
-           }).Validate(options =>
-           {
-               return options.MaxOrderCount <= 200;
-           }, "MaxOrderCount不能大于200");
+           }).ValidateDataAnnotations();
             services.PostConfigure<OrderServiceOptions>(options =>
             {
                 options.MaxOrderCount += 1;
