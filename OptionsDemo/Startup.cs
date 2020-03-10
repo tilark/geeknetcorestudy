@@ -25,9 +25,7 @@ namespace OptionsDemo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddSingleton<OrderServiceOptions>();
-            services.Configure<OrderServiceOptions>(Configuration.GetSection("OrderService"));
-            services.AddSingleton<IOrderService, OrderService>();
+            services.AddOrderService(Configuration.GetSection("OrderService"));
             services.AddControllers();
         }
 

@@ -11,14 +11,18 @@ namespace OptionsDemo.Services
     }
     public class OrderService : IOrderService
     {
-        IOptions<OrderServiceOptions> _options;
-        public OrderService(IOptions<OrderServiceOptions> options)
+        IOptionsMonitor<OrderServiceOptions> _options;
+        public OrderService(IOptionsMonitor<OrderServiceOptions> options)
         {
             this._options = options;
+            _options.OnChange(options =>
+            {
+                Console.WriteLine($"配置发生了变化，新值为：{options.MaxOrderCount }");
+            });
         }
         public int ShowMaxOrderCount()
         {
-            return _options.Value.MaxOrderCount;
+            return _options.CurrentValue.MaxOrderCount;
         }
     }
 
