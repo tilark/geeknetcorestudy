@@ -37,9 +37,9 @@ namespace OptionsDemo.Services
     {
         public ValidateOptionsResult Validate(string name, OrderServiceOptions options)
         {
-            if (options.MaxOrderCount > 100)
+            if (options.MaxOrderCount > 200)
             {
-                return ValidateOptionsResult.Fail("不能大于100");
+                return ValidateOptionsResult.Fail("不能大于200");
             }
             else
             {

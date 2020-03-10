@@ -15,7 +15,7 @@ namespace OptionsDemo.Services
             services.AddOptions<OrderServiceOptions>().Configure(options =>
            {
                configuration.Bind(options);
-           }).ValidateDataAnnotations();
+           }).Services.AddSingleton<IValidateOptions<OrderServiceOptions>, OrderServiceValidateOptions>();
             services.PostConfigure<OrderServiceOptions>(options =>
             {
                 options.MaxOrderCount += 1;
