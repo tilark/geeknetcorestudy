@@ -22,20 +22,38 @@ namespace LoggingSimpleDemo
             {
                 builder.AddConfiguration(config.GetSection("Logging"));
                 builder.AddConsole();
+                builder.AddDebug();
             });
             serviceCollection.AddTransient<OrderService>();
             IServiceProvider service = serviceCollection.BuildServiceProvider();
 
-            var order = service.GetService<OrderService>();
-            order.Show();
-            ILoggerFactory loggerFactory = service.GetService<ILoggerFactory>();
+            var logger = service.GetService<ILogger<Program>>();
 
-            ILogger alogger = loggerFactory.CreateLogger("alogger");
-            alogger.LogDebug(2001, "aiya");
-            alogger.LogInformation("hello");
+            while (Console.ReadKey().Key != ConsoleKey.Escape)
+            {
+                using (logger.BeginScope("ScopeId: {scopeId}", Guid.NewGuid()))
+                {
+                    logger.LogInformation("这是Info");
+                    logger.LogError("这是Error");
+                    logger.LogTrace("这是Trace");
 
-            var ex = new Exception("出错了");
-            alogger.LogError(ex, "出错了!");
+                }
+                System.Threading.Thread.Sleep(100);
+                Console.WriteLine("====分隔线====");
+            }
+
+
+
+            //var order = service.GetService<OrderService>();
+            //order.Show();
+            //ILoggerFactory loggerFactory = service.GetService<ILoggerFactory>();
+
+            //ILogger alogger = loggerFactory.CreateLogger("alogger");
+            //alogger.LogDebug(2001, "aiya");
+            //alogger.LogInformation("hello");
+
+            //var ex = new Exception("出错了");
+            //alogger.LogError(ex, "出错了!");
             Console.ReadKey();
         }
     }
