@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using RoutingDemo2.Constraint;
 
 namespace RoutingDemo2
 {
@@ -50,6 +51,10 @@ namespace RoutingDemo2
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
+            });
+            services.AddRouting(options =>
+            {
+                options.ConstraintMap.Add("isLong", typeof(MyRouteConstraint));
             });
         }
 

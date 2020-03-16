@@ -8,8 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace RoutingDemo2.Controllers
 {
-    [Route("api/[controller]")]
-    public class OrderController : Controller
+    [Route("api/[controller]/[action]")]
+    [ApiController]
+    public class OrderController : ControllerBase
     {
         // GET: api/<controller>
         [HttpGet]
