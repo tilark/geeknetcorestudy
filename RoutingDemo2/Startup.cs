@@ -34,19 +34,7 @@ namespace RoutingDemo2
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1",
-                    Description = "A simple example ASP.NET Core Web API",
-                    TermsOfService = new Uri("https://example.com/terms"),
-                    Contact = new OpenApiContact
-                    {
-                        Name = "Shayne Boyer",
-                        Email = string.Empty,
-                        Url = new Uri("https://twitter.com/spboyer"),
-                    },
-                    License = new OpenApiLicense
-                    {
-                        Name = "Use under LICX",
-                        Url = new Uri("https://example.com/license"),
-                    }
+                    Description = "A simple example ASP.NET Core Web API"                    
                 });
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
